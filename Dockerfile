@@ -7,6 +7,12 @@ RUN apt-get update && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
+# install Nmap
+RUN apt-get update && \
+    apt-get install -y nmap && \
+    rm -rf /var/lib/apt/lists/*
+
+
 RUN python -m venv /opt/venv
 ENV PATH="/opt/venv/bin:$PATH"
 
@@ -29,6 +35,13 @@ RUN apt-get update && \
     apt-get install --no-install-recommends -y libpq-dev && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
+
+# install Nmap
+RUN apt-get update && \
+    apt-get install -y nmap && \
+    rm -rf /var/lib/apt/lists/*
+
+
 
 COPY --from=compile-image /opt/venv /opt/venv
 COPY --from=compile-image /app /app
